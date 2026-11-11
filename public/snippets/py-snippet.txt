@@ -1,0 +1,33 @@
+# Plaza Gran Vía Sur: Asynchronous Webhook Processor for Odoo 19 Lease Events
+import hmac
+import hashlib
+import json
+import logging
+from typing import Dict, Any
+
+logger = logging.getLogger("odoo.webhooks")
+
+def process_lease_status_change(payload: Dict[str, Any], signature: str, secret_key: str) -> bool:
+    """
+    Validates cryptographic payload signature and triggers tenant billing updates.
+    """
+    computed_sig = hmac.new(
+        secret_key.encode('utf-8'),
+        json.dumps(payload, sort_keys=True).encode('utf-8'),
+        hashlib.sha256
+    ).hexdigest()
+
+    if not hmac.compare_digest(computed_sig, signature):
+        logger.error("Security violation: Invalid webhook signature received")
+        return False
+
+    contract_id = payload.get("contract_id")
+    new_state = payload.get("state")
+    tenant_cfdi = payload.get("cfdi_info")
+
+    if new_state == "active":
+        logger.info(f"Lease {contract_id} active. Provisioning tenant ledger in multi-tenant queue.")
+        # Schedule Openpay token recurring billing task
+        schedule_recurring_charge(contract_id, tenant_cfdi)
+
+    return True

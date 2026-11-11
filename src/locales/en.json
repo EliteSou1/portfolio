@@ -1,0 +1,107 @@
+{
+  "nav": {
+    "system": "ORBITAL SOLAR SYSTEM",
+    "home": "CORE",
+    "about": "ORIGIN",
+    "skills": "TECH MATRIX",
+    "projects": "SYSTEMS",
+    "experience": "CAREER",
+    "education": "EDUCATION",
+    "certifications": "CREDENTIALS",
+    "contact": "CONVERGENCE",
+    "status": "OPERATIONAL",
+    "audioOn": "ATMOSPHERIC AUDIO ACTIVE",
+    "audioOff": "AUDIO MUTED"
+  },
+  "home": {
+    "title": "SAÚL ALEJANDRO",
+    "surname": "RENDÓN COCOM",
+    "role": "Software Developer & Systems Architect",
+    "subtitle": "IT • Web • Mobile • Automation • Infrastructure",
+    "description": "Software developer focused on building decoupled architectures, complex operational digitalization, and infrastructure resilience. Transforming mission-critical procedures into reliable, high-performance, and verifiable digital ecosystems.",
+    "ctaProjects": "Explore Systems",
+    "ctaExperience": "View Career",
+    "ctaContact": "Initiate Contact",
+    "coordinates": "21.1619° N, 86.8515° W // CANCÚN, MEXICO",
+    "scrollHint": "SCROLL OR USE ORBIT HUDS TO NAVIGATE THE VOID"
+  },
+  "about": {
+    "badge": "01 // BACKGROUND & PHILOSOPHY",
+    "title": "Engineering the Void",
+    "lead": "I do not see software as disjointed blocks of code, but as living infrastructure where data fidelity and human workflows intersect.",
+    "genesis": "Genesis & Evolution",
+    "philosophy": "Architecture Philosophy",
+    "p1": "My technical path began by understanding how data flows at the OS kernel and network levels, evolving into end-to-end enterprise solution delivery: from high-concurrency backend microservices and transactional gateways, to reactive mobile field apps for frontline technicians.",
+    "p2": "I specialize in untangling legacy systems or messy manual workflows and refactoring them with clean architectures, Zero Trust security boundaries, and automated pipelines that eradicate operational friction.",
+    "highlights": [
+      { "label": "Primary Focus", "value": "High-Availability Systems & Headless ERP" },
+      { "label": "Methodology", "value": "Decoupled Design, Strict Typing & Automation" },
+      { "label": "Infrastructure", "value": "Linux Containers, Reverse Proxies & Private Networks" },
+      { "label": "Commitment", "value": "Robust, auditable, and maintainable software" }
+    ]
+  },
+  "skills": {
+    "badge": "02 // TECHNICAL SPECTRUM",
+    "title": "Capability Matrix",
+    "subtitle": "Tools, runtimes, and protocols proven in production environments.",
+    "activeTools": "ACTIVE TOOLS",
+    "implementation": "Implementation:",
+    "categories": {
+      "frontend": "Frontend & Reactive Interfaces",
+      "backend": "Backend & Transactional Logic",
+      "mobile": "Mobile & Field Operations",
+      "databases": "Databases & Persistence",
+      "infrastructure": "Infrastructure, Networks & DevSecOps",
+      "other": "Protocols, Integrations & Automation"
+    }
+  },
+  "projects": {
+    "badge": "03 // SYSTEMS BUILT",
+    "title": "Expeditions & Systems",
+    "subtitle": "Real production systems engineered with verifiable architectures and tangible operational impact.",
+    "viewCase": "Inspect Case Study",
+    "closeModal": "Close Inspection",
+    "more": "more",
+    "labels": {
+      "role": "Role",
+      "organization": "Environment",
+      "stack": "Tech Stack",
+      "problem": "The Challenge",
+      "solution": "Technical Solution",
+      "highlights": "Key Highlights",
+      "architecture": "Architecture Topology"
+    }
+  },
+  "experience": {
+    "badge": "04 // OPERATIONAL TRACK RECORD",
+    "title": "Professional Experience",
+    "subtitle": "Practical execution across software deployment, tech management, and digital transformation.",
+    "keyInterventions": "Key Interventions:"
+  },
+  "education": {
+    "badge": "05 // ACADEMIC FOUNDATIONS",
+    "title": "Education & Degrees",
+    "subtitle": "Firm foundations in software engineering, networking, and information technologies.",
+    "currentStatus": "In Progress — 7th Semester",
+    "specializationAxes": "Specialization Focus:"
+  },
+  "certifications": {
+    "badge": "06 // CREDENTIALS & CERTIFICATES",
+    "title": "Technical Validation",
+    "subtitle": "Credentials demonstrating operational competence and infrastructure know-how.",
+    "verifyCredential": "Verify Credential"
+  },
+  "contact": {
+    "badge": "07 // DIRECT CHANNELS",
+    "title": "Convergence",
+    "subtitle": "Particles return to the gravitational core. Let's discuss building value for your engineering team or project.",
+    "emailLabel": "EMAIL ADDRESS",
+    "githubLabel": "GITHUB",
+    "linkedinLabel": "LINKEDIN",
+    "locationLabel": "LOCATION",
+    "copySuccess": "Copied to clipboard!",
+    "copyPrompt": "Click to copy",
+    "sendEmail": "Send Transmission",
+    "closing": "Space ready for software collaborations, distributed architectures, and demanding engineering challenges."
+  }
+}

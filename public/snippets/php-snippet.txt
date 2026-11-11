@@ -1,0 +1,46 @@
+<?php
+/**
+ * Grupo SAOM - Proyecto CAS: Digital Signature Verification & Field Intervention Closing
+ */
+class InterventionClosureController extends CController {
+
+    public function actionSaveDigitalSignature($id) {
+        $request = Yii::app()->request;
+        if (!$request->isPostRequest) {
+            throw new CHttpException(400, 'Invalid request method');
+        }
+
+        $intervention = InterventionTicket::model()->findByPk($id);
+        if (!$intervention) {
+            throw new CHttpException(404, 'Intervention record not found');
+        }
+
+        $rawVector = $request->getPost('signature_vector');
+        $technicianNotes = $request->getPost('technician_notes');
+
+        // Validation of base64 vector representation
+        if (empty($rawVector) || !preg_match('/^data:image\/png;base64,/', $rawVector)) {
+            echo CJSON::encode(['success' => false, 'message' => 'Malformed signature payload']);
+            return;
+        }
+
+        $transaction = Yii::app()->db->beginTransaction();
+        try {
+            $intervention->signature_timestamp = new CDbExpression('NOW()');
+            $intervention->status = InterventionTicket::STATUS_RESOLVED;
+            $intervention->notes = CHtml::encode($technicianNotes);
+            
+            if ($intervention->save()) {
+                $this->archiveSignatureToSecureStore($intervention->id, $rawVector);
+                $transaction->commit();
+                echo CJSON::encode(['success' => true, 'ticket_id' => $intervention->id]);
+            } else {
+                $transaction->rollback();
+                echo CJSON::encode(['success' => false, 'errors' => $intervention->getErrors()]);
+            }
+        } catch (Exception $e) {
+            $transaction->rollback();
+            throw new CHttpException(500, $e->getMessage());
+        }
+    }
+}

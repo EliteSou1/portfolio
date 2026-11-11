@@ -1,0 +1,46 @@
+// Plaza Gran Vía Sur: Intermediary Node.js/Express JSON-RPC Client & Redis Cache Layer
+import { Request, Response } from 'express';
+import { redisClient } from '../config/redis';
+import { prisma } from '../config/prisma';
+
+export async function syncLeadToOdooRpc(req: Request, res: Response): Promise<Response> {
+  const { tenantId, leadData } = req.body;
+  const cacheKey = `lead:sync:${tenantId}:${leadData.externalId}`;
+
+  // Idempotency check in Redis to prevent duplicate webhooks under load
+  const isLocked = await redisClient.set(cacheKey, 'processing', { EX: 30, NX: true });
+  if (!isLocked) {
+    return res.status(409).json({ error: 'Sync operation already in-flight' });
+  }
+
+  try {
+    // 1. Transactional update in PostgreSQL via Prisma
+    const record = await prisma.commercialLead.upsert({
+      where: { externalId: leadData.externalId },
+      update: { status: 'SYNCING', payload: leadData },
+      create: { tenantId, externalId: leadData.externalId, payload: leadData, status: 'SYNCING' }
+    });
+
+    // 2. Dispatch typed JSON-RPC payload to Odoo 19 backend
+    const rpcPayload = {
+      jsonrpc: '2.0',
+      method: 'call',
+      params: {
+        service: 'object',
+        method: 'execute_kw',
+        args: [process.env.ODOO_DB, 2, process.env.ODOO_API_KEY, 'crm.lead', 'create', [{
+          name: leadData.name,
+          partner_name: leadData.company,
+          email_from: leadData.email,
+          x_tenant_id: tenantId
+        }]]
+      },
+      id: record.id
+    };
+
+    return res.status(200).json({ status: 'dispatched', trackingId: record.id });
+  } catch (error) {
+    await redisClient.del(cacheKey);
+    throw error;
+  }
+}

@@ -1,0 +1,41 @@
+// Sportk: Domain Service for Student & Coach Allocation
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
+
+namespace Sportk.Core.Domain.Services
+{
+    public class AcademyScheduleManager
+    {
+        private readonly ITrainingRepository _repository;
+        private readonly IAuditLogger _logger;
+
+        public AcademyScheduleManager(ITrainingRepository repository, IAuditLogger logger)
+        {
+            _repository = repository;
+            _logger = logger;
+        }
+
+        public async Task<OperationResult> AssignStudentToCoachSessionAsync(Guid studentId, Guid coachId, DateTime sessionTime)
+        {
+            var coach = await _repository.GetCoachWithSchedulesAsync(coachId);
+            if (coach == null || !coach.IsActive)
+            {
+                return OperationResult.Failed("Coach is inactive or not found.");
+            }
+
+            // Verify capacity and avoid overlapping sessions
+            if (coach.HasOverlappingSession(sessionTime))
+            {
+                return OperationResult.Failed("Coach already has a scheduled session at this timestamp.");
+            }
+
+            var session = new TrainingSession(Guid.NewGuid(), studentId, coachId, sessionTime);
+            await _repository.AddSessionAsync(session);
+            await _logger.LogEventAsync($"Session {session.Id} created for student {studentId} with coach {coachId}.");
+
+            return OperationResult.Succeeded(session.Id);
+        }
+    }
+}

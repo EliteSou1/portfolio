@@ -1,0 +1,107 @@
+{
+  "nav": {
+    "system": "SISTEMA SOLAR ORBITAL",
+    "home": "NÚCLEO",
+    "about": "ORIGEN",
+    "skills": "MATRIZ TÉCNICA",
+    "projects": "SISTEMAS",
+    "experience": "TRAYECTORIA",
+    "education": "FORMACIÓN",
+    "certifications": "CREDENCIALES",
+    "contact": "CONVERGENCIA",
+    "status": "OPERATIVO",
+    "audioOn": "AUDIO ATMOSFÉRICO ACTIVO",
+    "audioOff": "AUDIO SILENCIADO"
+  },
+  "home": {
+    "title": "SAÚL ALEJANDRO",
+    "surname": "RENDÓN COCOM",
+    "role": "Software Developer & Systems Architect",
+    "subtitle": "IT • Web • Mobile • Automation • Infrastructure",
+    "description": "Desarrollador de software enfocado en la construcción de arquitecturas desacopladas, digitalización de operaciones complejas y resiliencia de infraestructura. Transformando procesos críticos en ecosistemas digitales estables, eficientes y medibles.",
+    "ctaProjects": "Explorar Sistemas",
+    "ctaExperience": "Ver Trayectoria",
+    "ctaContact": "Iniciar Contacto",
+    "coordinates": "21.1619° N, 86.8515° W // CANCÚN, MÉXICO",
+    "scrollHint": "DESPLAZA O USA LAS ÓRBITAS PARA NAVEGAR EL ESPACIO"
+  },
+  "about": {
+    "badge": "01 // ANTECEDENTES Y FILOSOFÍA",
+    "title": "Ingeniería en el Vacío",
+    "lead": "No concibo el software como meros bloques de código aislados, sino como infraestructura viva donde convergen la precisión de datos y la experiencia humana.",
+    "genesis": "Génesis y Evolución",
+    "philosophy": "Filosofía de Arquitectura",
+    "p1": "Mi formación técnica comenzó entendiendo cómo fluyen los datos a nivel de sistema operativo y redes, evolucionando hacia el desarrollo de soluciones empresariales completas: desde microservicios backend y pasarelas de datos transaccionales, hasta aplicaciones móviles reactivas para brigadas en campo.",
+    "p2": "Me especializo en abordar sistemas legados o procesos manuales caóticos y rediseñarlos mediante arquitecturas limpias, perímetros de seguridad Zero Trust y automatizaciones que eliminen la fricción operativa.",
+    "highlights": [
+      { "label": "Enfoque Primario", "value": "Sistemas de Alta Disponibilidad & ERP Headless" },
+      { "label": "Metodología", "value": "Desacoplamiento, Tipado Estricto y Automatización" },
+      { "label": "Infraestructura", "value": "Linux Containers, Reverse Proxies & Redes Privadas" },
+      { "label": "Compromiso", "value": "Software robusto, auditable y mantenible" }
+    ]
+  },
+  "skills": {
+    "badge": "02 // ESPECTRO TECNOLÓGICO",
+    "title": "Matriz de Capacidades",
+    "subtitle": "Herramientas y tecnologías integradas en sistemas de producción.",
+    "activeTools": "HERRAMIENTAS ACTIVAS",
+    "implementation": "Implementación:",
+    "categories": {
+      "frontend": "Frontend & Interfaces Reactivas",
+      "backend": "Backend & Lógica Transaccional",
+      "mobile": "Desarrollo Móvil & Campo",
+      "databases": "Bases de Datos & Persistencia",
+      "infrastructure": "Infraestructura, Redes & DevSecOps",
+      "other": "Protocolos, Integraciones & Automatización"
+    }
+  },
+  "projects": {
+    "badge": "03 // SISTEMAS CONSTRUIDOS",
+    "title": "Expediciones & Proyectos",
+    "subtitle": "Soluciones reales implementadas con arquitectura auditable y alto impacto operativo.",
+    "viewCase": "Inspeccionar Caso",
+    "closeModal": "Cerrar Inspección",
+    "more": "más",
+    "labels": {
+      "role": "Rol",
+      "organization": "Entorno",
+      "stack": "Stack Tecnológico",
+      "problem": "El Desafío",
+      "solution": "La Solución Técnica",
+      "highlights": "Puntos de Impacto",
+      "architecture": "Topología de Arquitectura"
+    }
+  },
+  "experience": {
+    "badge": "04 // TRAYECTORIA OPERATIVA",
+    "title": "Historial Profesional",
+    "subtitle": "Experiencia aplicada en despliegue de sistemas, gestión técnica y modernización digital.",
+    "keyInterventions": "Intervenciones Clave:"
+  },
+  "education": {
+    "badge": "05 // FORMACIÓN ACADÉMICA",
+    "title": "Fundamentos & Estudios",
+    "subtitle": "Cimentación en ingeniería de software, redes y tecnologías de información.",
+    "currentStatus": "En curso — 7.º Semestre",
+    "specializationAxes": "Ejes de Especialización:"
+  },
+  "certifications": {
+    "badge": "06 // CREDENCIALES & CERTIFICACIONES",
+    "title": "Validación Técnica",
+    "subtitle": "Acreditaciones que respaldan destrezas operativas y de infraestructura.",
+    "verifyCredential": "Verificar Credencial"
+  },
+  "contact": {
+    "badge": "07 // CANALES DIRECTOS",
+    "title": "Convergencia",
+    "subtitle": "Las partículas regresan al punto de origen. Hablemos de cómo aportar valor a tus proyectos o equipo.",
+    "emailLabel": "CORREO ELECTRÓNICO",
+    "githubLabel": "GITHUB",
+    "linkedinLabel": "LINKEDIN",
+    "locationLabel": "UBICACIÓN",
+    "copySuccess": "¡Copiado al portapapeles!",
+    "copyPrompt": "Clic para copiar",
+    "sendEmail": "Enviar Mensaje",
+    "closing": "Espacio preparado para nuevas colaboraciones tecnológicas, arquitecturas de software y retos de ingeniería."
+  }
+}
