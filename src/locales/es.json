@@ -11,7 +11,10 @@
     "contact": "CONVERGENCIA",
     "status": "OPERATIVO",
     "audioOn": "AUDIO ATMOSFÉRICO ACTIVO",
-    "audioOff": "AUDIO SILENCIADO"
+    "audioOff": "AUDIO SILENCIADO",
+    "previous": "Anterior",
+    "next": "Siguiente",
+    "navigation": "Secciones del portfolio"
   },
   "home": {
     "title": "SAÚL ALEJANDRO",
@@ -34,10 +37,22 @@
     "p1": "Mi formación técnica comenzó entendiendo cómo fluyen los datos a nivel de sistema operativo y redes, evolucionando hacia el desarrollo de soluciones empresariales completas: desde microservicios backend y pasarelas de datos transaccionales, hasta aplicaciones móviles reactivas para brigadas en campo.",
     "p2": "Me especializo en abordar sistemas legados o procesos manuales caóticos y rediseñarlos mediante arquitecturas limpias, perímetros de seguridad Zero Trust y automatizaciones que eliminen la fricción operativa.",
     "highlights": [
-      { "label": "Enfoque Primario", "value": "Sistemas de Alta Disponibilidad & ERP Headless" },
-      { "label": "Metodología", "value": "Desacoplamiento, Tipado Estricto y Automatización" },
-      { "label": "Infraestructura", "value": "Linux Containers, Reverse Proxies & Redes Privadas" },
-      { "label": "Compromiso", "value": "Software robusto, auditable y mantenible" }
+      {
+        "label": "Enfoque Primario",
+        "value": "Sistemas de Alta Disponibilidad & ERP Headless"
+      },
+      {
+        "label": "Metodología",
+        "value": "Desacoplamiento, Tipado Estricto y Automatización"
+      },
+      {
+        "label": "Infraestructura",
+        "value": "Linux Containers, Reverse Proxies & Redes Privadas"
+      },
+      {
+        "label": "Compromiso",
+        "value": "Software robusto, auditable y mantenible"
+      }
     ]
   },
   "skills": {
@@ -102,6 +117,7 @@
     "copySuccess": "¡Copiado al portapapeles!",
     "copyPrompt": "Clic para copiar",
     "sendEmail": "Enviar Mensaje",
-    "closing": "Espacio preparado para nuevas colaboraciones tecnológicas, arquitecturas de software y retos de ingeniería."
+    "closing": "Espacio preparado para nuevas colaboraciones tecnológicas, arquitecturas de software y retos de ingeniería.",
+    "copyError": "No se pudo copiar. Selecciona el correo o usa el botón para enviarlo."
   }
 }

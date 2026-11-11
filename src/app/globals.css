@@ -41,8 +41,9 @@ body {
 
 /* Edge fade mask for smooth scroll containers without hard cuts */
 .mask-fade-edges {
-  mask-image: linear-gradient(to bottom, transparent 0, #000 64px, #000 calc(100% - 64px), transparent 100%);
-  -webkit-mask-image: linear-gradient(to bottom, transparent 0, #000 64px, #000 calc(100% - 64px), transparent 100%);
+  /* Keep the first and last lines fully readable. */
+  scroll-padding-block: 1rem;
+  overscroll-behavior: contain;
 }
 
 /* Scroll snap utilities */
@@ -88,4 +89,21 @@ body {
     animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
   }
+}
+
+/* Readable fallback when motion is reduced or the GPU cannot render the scene. */
+.cosmic-backdrop {
+  background:
+    radial-gradient(ellipse at 70% 35%, rgba(76, 29, 149, .25), transparent 55%),
+    radial-gradient(ellipse at 20% 75%, rgba(8, 145, 178, .16), transparent 50%),
+    #000103;
+}
+
+:focus-visible {
+  outline: 2px solid var(--accent-gold) !important;
+  outline-offset: 4px;
+}
+
+[data-inner-scroll="true"], .overflow-y-auto {
+  overscroll-behavior: contain;
 }

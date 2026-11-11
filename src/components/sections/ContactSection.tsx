@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { usePortfolio } from '@/context/PortfolioContext';
 import { socialData } from '@/data/social';
 import { AncientCard } from '@/components/ui/AncientCard';
@@ -29,19 +29,23 @@ function LinkedinIcon({ className }: { className?: string }) {
 
 export function ContactSection() {
   const { t } = usePortfolio();
-  const [copied, setCopied] = useState(false);
+  const [copyStatus, setCopyStatus] = useState<'idle' | 'success' | 'error'>('idle');
+  const copied = copyStatus === 'success';
+  const resetTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
+  useEffect(() => () => {
+    if (resetTimer.current !== null) clearTimeout(resetTimer.current);
+  }, []);
 
-  const handleCopyEmail = () => {
+  const handleCopyEmail = async () => {
     audioSynth.playSelectTone();
-    if (typeof navigator !== 'undefined' && navigator.clipboard?.writeText) {
-      navigator.clipboard
-        .writeText(socialData.email)
-        .then(() => {
-          setCopied(true);
-          setTimeout(() => setCopied(false), 2500);
-        })
-        .catch(() => {});
+    if (resetTimer.current !== null) clearTimeout(resetTimer.current);
+    try {
+      await navigator.clipboard.writeText(socialData.email);
+      setCopyStatus('success');
+    } catch {
+      setCopyStatus('error');
     }
+    resetTimer.current = setTimeout(() => setCopyStatus('idle'), 2500);
   };
 
   return (
@@ -107,6 +111,10 @@ export function ContactSection() {
             </div>
           </div>
 
+          <p role="status" aria-live="polite" className="text-xs text-[#ffcf8a]">
+            {copyStatus === 'error' ? t.contact.copyError : copied ? t.contact.copySuccess : ''}
+          </p>
+
           {/* Social Profiles Grid */}
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 pt-2">
             <a
@@ -124,7 +132,7 @@ export function ContactSection() {
                     {t.contact.githubLabel}
                   </span>
                   <span className="text-xs font-mono font-medium text-[#f4efe6]">
-                    github.com/saulrendon
+                    {socialData.github.replace('https://', '')}
                   </span>
                 </div>
               </div>

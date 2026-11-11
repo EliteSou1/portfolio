@@ -9,7 +9,7 @@ export function OrbitalNav() {
 
   return (
     <nav
-      aria-label="Indicador lateral de progreso"
+      aria-label={t.nav.navigation}
       className="fixed right-4 md:right-7 top-1/2 -translate-y-1/2 z-40 hidden sm:flex flex-col items-end gap-3 select-none pointer-events-auto"
     >
       <div
@@ -30,8 +30,9 @@ export function OrbitalNav() {
                 navigateToSection(section as SectionKey);
               }}
               onMouseEnter={() => audioSynth.playHoverTone()}
-              className="group relative flex items-center justify-end focus:outline-none"
-              aria-label={`Ir a ${sectionLabel}`}
+              className="group relative flex items-center justify-end min-w-6 min-h-6"
+              aria-label={sectionLabel}
+              aria-current={isActive ? 'location' : undefined}
             >
               {/* Tooltip Label flying to the left on hover */}
               <span

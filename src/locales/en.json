@@ -11,7 +11,10 @@
     "contact": "CONVERGENCE",
     "status": "OPERATIONAL",
     "audioOn": "ATMOSPHERIC AUDIO ACTIVE",
-    "audioOff": "AUDIO MUTED"
+    "audioOff": "AUDIO MUTED",
+    "previous": "Previous",
+    "next": "Next",
+    "navigation": "Portfolio sections"
   },
   "home": {
     "title": "SAÚL ALEJANDRO",
@@ -34,10 +37,22 @@
     "p1": "My technical path began by understanding how data flows at the OS kernel and network levels, evolving into end-to-end enterprise solution delivery: from high-concurrency backend microservices and transactional gateways, to reactive mobile field apps for frontline technicians.",
     "p2": "I specialize in untangling legacy systems or messy manual workflows and refactoring them with clean architectures, Zero Trust security boundaries, and automated pipelines that eradicate operational friction.",
     "highlights": [
-      { "label": "Primary Focus", "value": "High-Availability Systems & Headless ERP" },
-      { "label": "Methodology", "value": "Decoupled Design, Strict Typing & Automation" },
-      { "label": "Infrastructure", "value": "Linux Containers, Reverse Proxies & Private Networks" },
-      { "label": "Commitment", "value": "Robust, auditable, and maintainable software" }
+      {
+        "label": "Primary Focus",
+        "value": "High-Availability Systems & Headless ERP"
+      },
+      {
+        "label": "Methodology",
+        "value": "Decoupled Design, Strict Typing & Automation"
+      },
+      {
+        "label": "Infrastructure",
+        "value": "Linux Containers, Reverse Proxies & Private Networks"
+      },
+      {
+        "label": "Commitment",
+        "value": "Robust, auditable, and maintainable software"
+      }
     ]
   },
   "skills": {
@@ -102,6 +117,7 @@
     "copySuccess": "Copied to clipboard!",
     "copyPrompt": "Click to copy",
     "sendEmail": "Send Transmission",
-    "closing": "Space ready for software collaborations, distributed architectures, and demanding engineering challenges."
+    "closing": "Space ready for software collaborations, distributed architectures, and demanding engineering challenges.",
+    "copyError": "Could not copy. Select the email address or use the send email button."
   }
 }

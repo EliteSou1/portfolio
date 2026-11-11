@@ -68,18 +68,19 @@ class AudioSynthesizer {
     }
   }
 
-  public setMuted(muted: boolean) {
+  public async setMuted(muted: boolean) {
     this.isMuted = muted;
     if (!this.ctx || !this.masterGain) return;
 
     if (this.ctx.state === 'suspended' && !muted) {
-      this.ctx.resume();
+      try { await this.ctx.resume(); }
+      catch { this.isMuted = true; }
     }
 
     const now = this.ctx.currentTime;
     this.masterGain.gain.cancelScheduledValues(now);
 
-    if (muted) {
+    if (this.isMuted) {
       // Smooth fade out
       this.masterGain.gain.setTargetAtTime(0.0, now, 0.4);
     } else {
@@ -88,11 +89,12 @@ class AudioSynthesizer {
     }
   }
 
-  public toggle(): boolean {
+  public async toggle(): Promise<boolean> {
     if (!this.isInitialized) {
       this.init();
     }
-    this.setMuted(!this.isMuted);
+    if (!this.ctx || !this.masterGain || this.ctx.state === 'closed') return false;
+    await this.setMuted(!this.isMuted);
     return !this.isMuted;
   }
 

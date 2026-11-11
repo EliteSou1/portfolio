@@ -6,7 +6,9 @@
     "dev": "next dev",
     "start": "next start",
     "build": "next build",
-    "check:glsl": "node scripts/check-glsl.mjs"
+    "check:glsl": "node scripts/check-glsl.mjs",
+    "test:e2e": "node --test tests/portfolio.test.mjs",
+    "test": "node --test tests/navigation.test.mjs"
   },
   "dependencies": {
     "@react-three/drei": "^10.0.0",
@@ -33,6 +35,7 @@
     "@types/react": "19.2.0",
     "@types/react-dom": "19.2.0",
     "@types/three": "^0.173.0",
+    "playwright": "1.62.1",
     "typescript": "^5.7.3"
   }
 }

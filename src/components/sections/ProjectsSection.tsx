@@ -29,7 +29,7 @@ export function ProjectsSection() {
           {t.projects.badge}
         </Badge>
         <h2 className="text-3xl sm:text-5xl font-serif text-[#f1f5f9] tracking-tight">
-          Sistemas & <span className="italic text-[#ffcf8a]">Arquitecturas</span>
+          {t.projects.title}
         </h2>
         <p className="text-xs sm:text-sm text-[#94a3b8] font-mono tracking-wider">
           {t.projects.subtitle}
@@ -46,6 +46,7 @@ export function ProjectsSection() {
         ].map((item) => (
           <button
             key={item.id}
+            aria-pressed={filter === item.id}
             onClick={() => {
               audioSynth.playSelectTone();
               setFilter(item.id as typeof filter);
@@ -67,6 +68,17 @@ export function ProjectsSection() {
           <div key={project.id} className="scroll-snap-align-start pt-1">
             <AncientCard
               variant="interactive"
+              role="button"
+              tabIndex={0}
+              aria-haspopup="dialog"
+              aria-label={`${t.projects.viewCase}: ${project.title}`}
+              onKeyDown={(event) => {
+                if (event.key === 'Enter' || event.key === ' ') {
+                  event.preventDefault();
+                  audioSynth.playSelectTone();
+                  setInspectingProject(project);
+                }
+              }}
               accent="blue"
               onClick={() => {
                 audioSynth.playSelectTone();
@@ -119,7 +131,7 @@ export function ProjectsSection() {
                 </div>
 
                 <span className="text-xs font-mono text-[#ffcf8a] group-hover:translate-x-1 transition-transform flex items-center gap-1 font-semibold">
-                  <span>Inspeccionar</span>
+                  <span>{t.projects.viewCase}</span>
                   <span>→</span>
                 </span>
               </div>

@@ -148,6 +148,7 @@ export function PortfolioProvider({ children }: { children: React.ReactNode }) {
   const [inspectingProject, setInspectingProject] = useState<ProjectItem | null>(null);
 
   const transitionCooldownRef = useRef<boolean>(false);
+  const transitionTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
 
   // Read browser preferences for reduced motion and mobile screen width
   useEffect(() => {
@@ -156,17 +157,16 @@ export function PortfolioProvider({ children }: { children: React.ReactNode }) {
     const mediaQueryMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
     setIsReducedMotion(mediaQueryMotion.matches);
 
-    const checkMobile = () => {
-      setIsMobile(window.innerWidth < 768);
-    };
-
-    checkMobile();
-    window.addEventListener('resize', checkMobile);
+    const mediaQueryMobile = window.matchMedia('(max-width: 767px)');
+    setIsMobile(mediaQueryMobile.matches);
+    const onMobileChange = (event: MediaQueryListEvent) => setIsMobile(event.matches);
+    mediaQueryMobile.addEventListener('change', onMobileChange);
 
     const onMotionChange = (e: MediaQueryListEvent) => setIsReducedMotion(e.matches);
     mediaQueryMotion.addEventListener('change', onMotionChange);
 
-    const savedLang = localStorage.getItem('portfolio_lang') as 'es' | 'en' | null;
+    let savedLang: string | null = null;
+    try { savedLang = localStorage.getItem('portfolio_lang'); } catch { /* Storage can be disabled. */ }
     if (savedLang === 'es' || savedLang === 'en') {
       setLanguageState(savedLang);
     } else if (navigator.language.startsWith('es')) {
@@ -176,7 +176,7 @@ export function PortfolioProvider({ children }: { children: React.ReactNode }) {
     }
 
     return () => {
-      window.removeEventListener('resize', checkMobile);
+      mediaQueryMobile.removeEventListener('change', onMobileChange);
       mediaQueryMotion.removeEventListener('change', onMotionChange);
     };
   }, []);
@@ -184,12 +184,18 @@ export function PortfolioProvider({ children }: { children: React.ReactNode }) {
   const setLanguage = (lang: 'es' | 'en') => {
     setLanguageState(lang);
     if (typeof window !== 'undefined') {
-      localStorage.setItem('portfolio_lang', lang);
+      try { localStorage.setItem('portfolio_lang', lang); } catch { /* Keep language changes usable without storage. */ }
     }
   };
 
-  const toggleAudio = useCallback(() => {
-    const isNowActive = audioSynth.toggle();
+  useEffect(() => { document.documentElement.lang = language; }, [language]);
+
+  useEffect(() => () => {
+    if (transitionTimerRef.current !== null) clearTimeout(transitionTimerRef.current);
+  }, []);
+
+  const toggleAudio = useCallback(async () => {
+    const isNowActive = await audioSynth.toggle();
     setAudioActive(isNowActive);
   }, []);
 
@@ -212,12 +218,12 @@ export function PortfolioProvider({ children }: { children: React.ReactNode }) {
 
       audioSynth.playSectionTransition(targetIndex);
 
-      setTimeout(() => {
+      transitionTimerRef.current = setTimeout(() => {
         setIsTransitioning(false);
         transitionCooldownRef.current = false;
-      }, 550); // Snappy 550ms orbital lock
+      }, isReducedMotion ? 0 : 550);
     },
-    [activeSection]
+    [activeSection, isReducedMotion]
   );
 
   const nextSection = useCallback(() => {

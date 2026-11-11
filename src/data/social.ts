@@ -8,7 +8,7 @@ export interface SocialLink {
 
 export const socialData = {
   email: 'saulrendoncocom@gmail.com',
-  github: 'https://github.com/saulrendon',
+  github: 'https://github.com/EliteSou1',
   linkedin: 'https://linkedin.com/in/saul-rendon',
   location: 'Cancún, Quintana Roo, México',
   coordinates: '21.1619° N, 86.8515° W',
@@ -16,8 +16,8 @@ export const socialData = {
     {
       id: 'github',
       name: 'GitHub',
-      url: 'https://github.com/saulrendon',
-      display: 'github.com/saulrendon',
+      url: 'https://github.com/EliteSou1',
+      display: 'github.com/EliteSou1',
       iconName: 'Github',
     },
     {

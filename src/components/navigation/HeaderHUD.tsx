@@ -7,7 +7,7 @@ import { Volume2, VolumeX, Globe } from 'lucide-react';
 import { audioSynth } from '@/lib/audio-synth';
 
 export function HeaderHUD() {
-  const { language, setLanguage, audioActive, toggleAudio, navigateToSection } =
+  const { language, setLanguage, audioActive, toggleAudio, navigateToSection, t } =
     usePortfolio();
 
   return (
@@ -20,10 +20,10 @@ export function HeaderHUD() {
             navigateToSection('home');
           }}
           className="flex items-center gap-3 group focus:outline-none"
-          title="Regresar al inicio"
+          title={t.nav.home}
         >
           <AbstractAvatar size="sm" />
-          <div className="text-left">
+          <div className="text-left hidden sm:block">
             <div className="flex items-center gap-2">
               <span className="text-xs font-mono tracking-widest text-[#f1f5f9] group-hover:text-[#ffcf8a] transition-colors uppercase font-medium">
                 SAÚL A. RENDÓN COCOM
@@ -49,6 +49,8 @@ export function HeaderHUD() {
         >
           <Globe className="w-3.5 h-3.5 text-[#94a3b8] ml-2 mr-1 hidden sm:block" />
           <button
+            aria-label="Español"
+            aria-pressed={language === 'es'}
             onClick={() => {
               audioSynth.playSelectTone();
               setLanguage('es');
@@ -63,6 +65,8 @@ export function HeaderHUD() {
           </button>
           <span className="text-white/20 px-0.5">|</span>
           <button
+            aria-label="English"
+            aria-pressed={language === 'en'}
             onClick={() => {
               audioSynth.playSelectTone();
               setLanguage('en');
@@ -91,7 +95,9 @@ export function HeaderHUD() {
               ? 'border-[#ffcf8a]/40 bg-[#ffcf8a]/10 text-[#ffcf8a]'
               : 'border-white/10 text-[#94a3b8] hover:text-[#f1f5f9] hover:border-white/25'
           }`}
-          title={audioActive ? 'Desactivar audio ambiente' : 'Activar audio ambiente'}
+          aria-pressed={audioActive}
+          aria-label={audioActive ? t.nav.audioOn : t.nav.audioOff}
+          title={audioActive ? t.nav.audioOn : t.nav.audioOff}
         >
           {audioActive ? (
             <>
