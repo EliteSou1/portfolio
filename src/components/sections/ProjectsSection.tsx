@@ -23,18 +23,18 @@ export function ProjectsSection() {
       data-inner-scroll="true"
       className="w-full flex flex-col justify-center max-w-[560px] relative z-10"
     >
-      {/* Header */}
-      <div className="space-y-2 mb-4">
-        <Badge variant="gold" dot>
-          {t.projects.badge}
-        </Badge>
-        <h2 className="text-3xl sm:text-5xl font-serif text-[#f1f5f9] tracking-tight">
-          {t.projects.title}
-        </h2>
-        <p className="text-xs sm:text-sm text-[#94a3b8] font-mono tracking-wider">
-          {t.projects.subtitle}
-        </p>
-      </div>
+        {/* Header */}
+        <div className="space-y-2 mb-4">
+          <Badge variant="gold" dot>
+            {t.projects.badge}
+          </Badge>
+          <h2 className="text-3xl sm:text-5xl font-serif text-[#f1f5f9] tracking-tight">
+            {t.projects.title}
+          </h2>
+          <p className="text-xs sm:text-sm text-[#94a3b8] font-mono tracking-wider">
+            {t.projects.subtitle}
+          </p>
+        </div>
 
       {/* Filter Tabs */}
       <div className="flex flex-wrap gap-1.5 pb-3 mb-2 border-b border-white/10">
@@ -63,7 +63,7 @@ export function ProjectsSection() {
       </div>
 
       {/* Compact Scroll-Snap Cards List with Smooth Edge Fade */}
-      <div className="mask-fade-edges scroll-snap-y space-y-3.5 max-h-[58vh] sm:max-h-[62vh] overflow-y-auto pr-1">
+      <div className="mask-fade-edges scroll-snap-y space-y-4 max-h-[58vh] sm:max-h-[64vh] overflow-y-auto pr-1">
         {filteredProjects.map((project: ProjectItem) => (
           <div key={project.id} className="scroll-snap-align-start pt-1">
             <AncientCard
@@ -84,12 +84,12 @@ export function ProjectsSection() {
                 audioSynth.playSelectTone();
                 setInspectingProject(project);
               }}
-              className="p-5 flex flex-col justify-between space-y-3 group"
+              className="p-5 sm:p-6 flex flex-col justify-between space-y-3.5 group"
             >
-              <div className="space-y-2">
+              <div className="space-y-2.5">
                 {/* Meta Top Line */}
                 <div className="flex items-center justify-between text-xs font-mono">
-                  <span className="text-[#38bdf8] tracking-widest uppercase font-medium">
+                  <span className="text-[#38bdf8] tracking-widest uppercase font-semibold">
                     {project.organization}
                   </span>
                   <span className="text-[#94a3b8]">{project.period}</span>
@@ -102,29 +102,29 @@ export function ProjectsSection() {
                 </h3>
 
                 {/* Subtitle */}
-                <p className="text-xs font-mono text-[#94a3b8] line-clamp-1">
+                <p className="text-xs sm:text-sm font-mono text-[#94a3b8] line-clamp-1">
                   {project.subtitle}
                 </p>
 
-                {/* Summary (Max 3 lines, high contrast text) */}
-                <p className="text-xs sm:text-sm text-[#cbd5e1] leading-relaxed line-clamp-3">
+                {/* Summary (High contrast text, 14-16px) */}
+                <p className="text-sm text-[#cbd5e1] leading-relaxed line-clamp-3">
                   {project.summary[language]}
                 </p>
               </div>
 
               {/* Bottom Tags & Inspect CTA */}
-              <div className="pt-2 border-t border-white/10 flex items-center justify-between">
+              <div className="pt-2.5 border-t border-white/10 flex items-center justify-between">
                 <div className="flex flex-wrap gap-1.5">
                   {project.stack.slice(0, 3).map((tag) => (
                     <span
                       key={tag}
-                      className="px-2 py-0.5 rounded text-[10px] font-mono tracking-wider bg-white/5 border border-white/10 text-[#94a3b8]"
+                      className="px-2 py-0.5 rounded text-[11px] font-mono tracking-wider bg-white/5 border border-white/10 text-[#cbd5e1]"
                     >
                       {tag}
                     </span>
                   ))}
                   {project.stack.length > 3 && (
-                    <span className="text-[10px] font-mono text-[#94a3b8] self-center">
+                    <span className="text-[11px] font-mono text-[#94a3b8] self-center">
                       +{project.stack.length - 3}
                     </span>
                   )}

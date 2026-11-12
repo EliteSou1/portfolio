@@ -47,33 +47,21 @@ export function AncientCard({
     <div
       onMouseEnter={handleMouseEnter}
       style={{
-        backgroundColor: 'rgba(8, 6, 20, 0.55)',
-        backdropFilter: 'blur(10px)',
-        WebkitBackdropFilter: 'blur(10px)',
+        backgroundColor: 'rgba(9, 11, 18, 0.88)',
+        backdropFilter: 'blur(16px)',
+        WebkitBackdropFilter: 'blur(16px)',
       }}
       className={cn(
-        'relative rounded-xl border border-white/10 transition-colors duration-200',
+        'relative rounded-xl border border-white/10 shadow-[0_8px_32px_rgba(0,0,0,0.4)] transition-all duration-200',
         variant === 'interactive' && [
           'cursor-pointer',
+          'hover:bg-[#0d1222]/95',
           hoverBorderColor,
         ],
         className
       )}
       {...props}
     >
-      {/* Delicate corner ticks with section accent */}
-      <div
-        className={cn(
-          'absolute -top-[1px] -left-[1px] w-2.5 h-2.5 border-t border-l pointer-events-none transition-colors duration-200',
-          cornerTickColor
-        )}
-      />
-      <div
-        className={cn(
-          'absolute -bottom-[1px] -right-[1px] w-2.5 h-2.5 border-b border-r pointer-events-none transition-colors duration-200',
-          cornerTickColor
-        )}
-      />
       {children}
     </div>
   );

@@ -9,10 +9,10 @@ import { JOURNEY_PATH, LOOK_PATH, SPACE_ZONES } from '@/lib/spaceConfig';
 import { spaceStore } from './space/spaceStore';
 
 const PARALLAX_CONFIG = {
-  MAX_POS_OFFSET: 0.35,
-  MAX_ROT_RAD: (3.0 * Math.PI) / 180,
-  DAMP_FACTOR: 0.05,
-  IDLE_AMPLITUDE: 0.07,
+  MAX_POS_OFFSET: 0.18,
+  MAX_ROT_RAD: (1.5 * Math.PI) / 180,
+  DAMP_FACTOR: 0.04,
+  IDLE_AMPLITUDE: 0.025,
 } as const;
 
 // Progression coordinates for each of the 8 portfolio sections
@@ -91,7 +91,7 @@ export function CameraRig() {
 
     // 2. Parallax and Idle Zero-G Breathing Offset
     const allowParallax = !isReducedMotion && !isMobile;
-    const modeParallaxMult = 0.45;
+    const modeParallaxMult = 0.25;
     const targetMouseX = allowParallax ? mousePos.current.x * modeParallaxMult : 0;
     const targetMouseY = allowParallax ? mousePos.current.y * modeParallaxMult : 0;
 
@@ -114,8 +114,8 @@ export function CameraRig() {
     camera.position.lerp(persistentDesiredPos.current, followSpeed);
 
     persistentLookOffset.current.copy(targetLookAt.current);
-    persistentLookOffset.current.x += smoothedMouse.current.x * 0.2 + idleX * 0.15;
-    persistentLookOffset.current.y += -smoothedMouse.current.y * 0.15 + idleY * 0.15;
+    persistentLookOffset.current.x += smoothedMouse.current.x * 0.08 + idleX * 0.05;
+    persistentLookOffset.current.y += -smoothedMouse.current.y * 0.06 + idleY * 0.05;
     currentLookAt.current.lerp(persistentLookOffset.current, followSpeed);
 
     camera.lookAt(currentLookAt.current);

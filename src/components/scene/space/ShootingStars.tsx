@@ -59,16 +59,16 @@ const meteorFragmentShader = `
   void main() {
     if (vProgress < 0.0 || vProgress > 1.0) discard;
 
-    // Longitudinal fade: intense head, long smooth dissipating tail
-    float headGlow = pow(vUv.x, 3.2);
-    // Transverse cross-section: bright core, soft edges
+    // Longitudinal fade: subtle, crisp streak
+    float headGlow = pow(vUv.x, 2.5);
+    // Transverse cross-section: fine hairline core, soft edges
     float crossEdge = 1.0 - abs(vUv.y - 0.5) * 2.0;
-    float alpha = headGlow * pow(max(0.0, crossEdge), 1.5) * (1.0 - pow(vProgress, 2.5));
+    float alpha = headGlow * pow(max(0.0, crossEdge), 2.0) * (1.0 - pow(vProgress, 2.0)) * 0.45;
 
     if (alpha < 0.005) discard;
 
-    // Extra incandescence at meteor head tip
-    vec3 finalColor = vColor * (1.0 + pow(vUv.x, 8.0) * 3.5);
+    // Subtle natural starlight white-cyan tip
+    vec3 finalColor = mix(vColor, vec3(0.95, 0.98, 1.0), pow(vUv.x, 4.0));
     gl_FragColor = vec4(finalColor, alpha);
   }
 `;
@@ -85,7 +85,7 @@ export function ShootingStars({ isMobile = false }: ShootingStarsProps) {
     ? SPACE_BUDGETS.mobile.shootingStarPool
     : SPACE_BUDGETS.desktop.shootingStarPool;
 
-  const nextSpawnTime = useRef(THREE.MathUtils.randFloat(2.0, 5.0));
+  const nextSpawnTime = useRef(THREE.MathUtils.randFloat(12.0, 24.0));
   const activeIndex = useRef(0);
 
   // Persistent vectors for trajectory allocation

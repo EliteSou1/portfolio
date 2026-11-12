@@ -23,7 +23,7 @@ export function EducationSection() {
             {t.education.badge}
           </Badge>
           <h2 className="text-3xl sm:text-5xl font-serif text-[#f1f5f9] tracking-tight">
-            Formación & <span className="italic text-[#ffcf8a]">Grados</span>
+            {t.education.title}
           </h2>
           <p className="text-xs sm:text-sm text-[#94a3b8] font-mono tracking-wider">
             {t.education.subtitle}

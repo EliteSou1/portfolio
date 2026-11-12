@@ -38,15 +38,15 @@ const cometTailVertexShader = `
     vec3 tailDir = -normalize(vel);
 
     // Dynamic solar wind ion tail deflection
-    float tailLength = 26.0;
+    float tailLength = 12.0;
     vec3 basePos = head + tailDir * (aIndex * tailLength);
 
     // Turbulence / ionic plume expansion
     vec3 side = normalize(cross(tailDir, vec3(0.0, 1.0, 0.0)));
     vec3 up = cross(side, tailDir);
 
-    float noiseSide = sin(uTime * 3.8 + aIndex * 16.0 + aSeed * 6.28) * aIndex * 2.2;
-    float noiseUp = cos(uTime * 3.2 + aIndex * 12.0 + aSeed * 5.12) * aIndex * 1.6;
+    float noiseSide = sin(uTime * 1.5 + aIndex * 8.0 + aSeed * 6.28) * aIndex * 0.8;
+    float noiseUp = cos(uTime * 1.2 + aIndex * 6.0 + aSeed * 5.12) * aIndex * 0.6;
 
     vec3 worldPos = basePos + side * noiseSide + up * noiseUp;
 
@@ -58,7 +58,7 @@ const cometTailVertexShader = `
     gl_PointSize = pSize;
 
     // Quadratic tail fade
-    vAlpha = pow(1.0 - aIndex, 1.35);
+    vAlpha = pow(1.0 - aIndex, 2.0) * 0.45; // Subdued, elegant tail
   }
 `;
 
@@ -72,12 +72,12 @@ const cometTailFragmentShader = `
     float a = tex.a * vAlpha;
     if (a < 0.005) discard;
 
-    // Color gradient: Radiant Cyan (#38bdf8) near head transitioning to Deep Ion Blue (#0284c7)
-    vec3 colHead = vec3(0.22, 0.74, 0.97);
-    vec3 colTail = vec3(0.01, 0.42, 0.88);
+    // Color gradient: Soft silver cyan to deep atmospheric indigo
+    vec3 colHead = vec3(0.55, 0.78, 0.92);
+    vec3 colTail = vec3(0.12, 0.25, 0.55);
     vec3 col = mix(colHead, colTail, vIndex);
 
-    gl_FragColor = vec4(col, a * 0.85);
+    gl_FragColor = vec4(col, a * 0.5);
   }
 `;
 
@@ -107,11 +107,11 @@ const cometHeadFragmentShader = `
   uniform sampler2D uMap;
   void main() {
     vec4 tex = texture2D(uMap, gl_PointCoord);
-    // Golden warm core (#fff3d1) surrounded by brilliant cyan ion coma
-    vec3 coreColor = vec3(1.0, 0.95, 0.82);
-    vec3 comaColor = vec3(0.22, 0.82, 0.98);
-    vec3 col = mix(comaColor, coreColor, pow(tex.r, 2.0));
-    gl_FragColor = vec4(col * 1.5, tex.a * 0.95);
+    // Soft pearl white core with faint cyan edge
+    vec3 coreColor = vec3(0.95, 0.96, 0.98);
+    vec3 comaColor = vec3(0.45, 0.65, 0.85);
+    vec3 col = mix(comaColor, coreColor, tex.r);
+    gl_FragColor = vec4(col, tex.a * 0.4);
   }
 `;
 

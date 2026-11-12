@@ -80,21 +80,21 @@ export function ProjectModal() {
         </button>
 
         {/* Modal Header */}
-        <div className="space-y-2 pr-10">
+        <div className="space-y-3 pr-10">
           <div className="flex flex-wrap items-center gap-2">
             <Badge variant="gold" dot>
               {inspectingProject.organization}
             </Badge>
             <Badge variant="stone">{inspectingProject.period}</Badge>
-            <span className="text-xs font-mono text-[#a39caa]">
+            <span className="text-sm font-mono text-[#cbd5e1]">
               {inspectingProject.role[language]}
             </span>
           </div>
 
-          <h3 id="modal-title" className="text-2xl sm:text-3xl font-serif text-[#f4efe6]">
+          <h3 id="modal-title" className="text-2xl sm:text-4xl font-serif text-[#f4efe6]">
             {inspectingProject.title}
           </h3>
-          <p className="text-xs sm:text-sm font-mono text-[#ffcf8a] tracking-wide">
+          <p className="text-sm sm:text-base font-mono text-[#ffcf8a] tracking-wide">
             {inspectingProject.subtitle}
           </p>
         </div>
@@ -120,22 +120,22 @@ export function ProjectModal() {
 
         {/* Challenge & Solution */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-          <div className="p-4 rounded border border-white/10 bg-[#05060d]/60 space-y-2">
+          <div className="p-4 sm:p-5 rounded-xl border border-white/10 bg-[#05060d]/80 space-y-2">
             <span className="text-xs font-mono text-[#ec4899] uppercase tracking-wider flex items-center gap-1.5 font-semibold">
               <ShieldCheck className="w-3.5 h-3.5" />
               {t.projects.labels.problem}
             </span>
-            <p className="text-xs sm:text-sm text-[#d0c8d8] leading-relaxed">
+            <p className="text-sm text-[#cbd5e1] leading-relaxed">
               {inspectingProject.challenge[language]}
             </p>
           </div>
 
-          <div className="p-4 rounded border border-white/10 bg-[#05060d]/60 space-y-2">
+          <div className="p-4 sm:p-5 rounded-xl border border-white/10 bg-[#05060d]/80 space-y-2">
             <span className="text-xs font-mono text-[#8b5cf6] uppercase tracking-wider flex items-center gap-1.5 font-semibold">
               <Cpu className="w-3.5 h-3.5" />
               {t.projects.labels.solution}
             </span>
-            <p className="text-xs sm:text-sm text-[#d0c8d8] leading-relaxed">
+            <p className="text-sm text-[#cbd5e1] leading-relaxed">
               {inspectingProject.solution[language]}
             </p>
           </div>
@@ -174,7 +174,7 @@ export function ProjectModal() {
           </span>
           <ul className="space-y-1.5">
             {inspectingProject.achievements[language].map((ach, idx) => (
-              <li key={idx} className="flex items-start gap-2.5 text-xs sm:text-sm text-[#d0c8d8]">
+              <li key={idx} className="flex items-start gap-2.5 text-sm text-[#cbd5e1] leading-relaxed">
                 <CheckCircle2 className="w-4 h-4 text-[#ffcf8a] flex-shrink-0 mt-0.5" />
                 <span>{ach}</span>
               </li>

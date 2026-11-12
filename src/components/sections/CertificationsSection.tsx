@@ -24,7 +24,7 @@ export function CertificationsSection() {
             {t.certifications.badge}
           </Badge>
           <h2 className="text-3xl sm:text-5xl font-serif text-[#f1f5f9] tracking-tight">
-            Credenciales & <span className="italic text-[#c084fc]">Certificaciones</span>
+            {t.certifications.title}
           </h2>
           <p className="text-xs sm:text-sm text-[#94a3b8] font-mono tracking-wider">
             {t.certifications.subtitle}

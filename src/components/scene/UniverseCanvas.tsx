@@ -151,8 +151,7 @@ export function UniverseCanvas() {
               />
             )}
 
-            {/* 8. Supernova Detonation Event Quad */}
-            <Supernova />
+            {/* 8. Supernova desactivada inicialmente para sobriedad y evitar destellos transitorios */}
 
             {/* 9. Intelligent Camera Voyager */}
             <CameraRig />

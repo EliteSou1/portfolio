@@ -117,26 +117,20 @@ export default function Home() {
           </button>
         </div>
 
-        {/* 5. Orbital Stage: Alternating Left/Right layout (max-w 560px, ~45-50% width on desktop) */}
-        <div
-          className={`fixed inset-0 z-20 flex items-center p-4 sm:p-8 pt-20 pb-16 pointer-events-none transition-all duration-700 ${
-            isLeftSide
-              ? 'justify-center lg:justify-start lg:pl-16 xl:pl-28'
-              : 'justify-center lg:justify-end lg:pr-16 xl:pr-28'
-          }`}
-        >
+        {/* 5. Orbital Stage: Stable Left Column Layout (calm, predictable reading framing) */}
+        <div className="fixed inset-0 z-20 flex items-center justify-center lg:justify-start p-4 sm:p-8 pt-20 pb-16 lg:pl-16 xl:pl-28 pointer-events-none">
           <div
             ref={stageRef}
             tabIndex={-1}
             role="region"
             aria-label={t.nav[activeSection]}
             key={activeSection}
-            className={`w-full max-w-[560px] max-h-full overflow-y-auto transition-all duration-500 ease-out pointer-events-auto ${
+            className={`w-full max-w-[580px] max-h-full overflow-y-auto pointer-events-auto reading-column-backdrop p-2 sm:p-4 rounded-2xl transition-all duration-300 ease-out ${
               isTransitioning && !isReducedMotion
                 ? transitionDirection === 'forward'
-                  ? 'opacity-0 translate-y-4 scale-[0.98] blur-[2px]'
-                  : 'opacity-0 -translate-y-4 scale-[0.98] blur-[2px]'
-                : 'opacity-100 translate-y-0 scale-100 blur-0'
+                  ? 'opacity-0 translate-y-2'
+                  : 'opacity-0 -translate-y-2'
+                : 'opacity-100 translate-y-0'
             }`}
           >
             {renderActiveSection()}

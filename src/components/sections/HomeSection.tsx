@@ -20,10 +20,10 @@ export function HomeSection() {
         {/* Status Badge */}
         <div className="flex flex-wrap items-center gap-2">
           <Badge variant="gold" dot>
-            {t.nav.status} // ORBIT 00
+            {t.nav.status}
           </Badge>
           <Badge variant="stone">
-            DEEP SPACE ARCHITECTURE
+            {t.home.subtitle}
           </Badge>
         </div>
 
@@ -98,10 +98,10 @@ export function HomeSection() {
           </button>
         </div>
 
-        {/* Soft Hero Scroll Hint */}
-        <div className="flex items-center gap-2 pt-3 text-[11px] font-mono text-[#94a3b8]/70">
-          <ArrowDown className="w-3 h-3 text-[#ffcf8a] animate-bounce" />
-          <span className="tracking-widest uppercase">Desplaza para navegar el cosmos</span>
+        {/* Soft Hero Scroll Hint (calm, static, translated) */}
+        <div className="flex items-center gap-2 pt-2 text-xs font-mono text-[#94a3b8]">
+          <ArrowDown className="w-3.5 h-3.5 text-[#ffcf8a]" />
+          <span className="tracking-wider uppercase">{t.home.scrollHint}</span>
         </div>
       </div>
     </section>

@@ -20,14 +20,14 @@ const starsVertexShader = `
   void main() {
     vColor = aColor;
 
-    // Organic stellar scintillation calculated in GPU
-    float twinkle = 0.70 + 0.30 * sin(uTime * aTwinkleSpeed + aPhase);
-    vAlpha = twinkle;
+    // Organic subtle stellar scintillation: calm, steady starlight
+    float twinkle = 0.85 + 0.15 * sin(uTime * (aTwinkleSpeed * 0.5) + aPhase);
+    vAlpha = twinkle * 0.75;
 
     vec4 mvPosition = modelViewMatrix * vec4(position, 1.0);
     gl_Position = projectionMatrix * mvPosition;
 
-    gl_PointSize = aSize * (220.0 / -mvPosition.z) * twinkle;
+    gl_PointSize = (aSize * 0.8) * (200.0 / -mvPosition.z) * twinkle;
   }
 `;
 

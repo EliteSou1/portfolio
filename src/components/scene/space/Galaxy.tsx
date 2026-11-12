@@ -45,8 +45,8 @@ const galaxyMainVertexShader = `
 
     // Core stars are brighter & slightly larger, arms are fine luminous pinpoints
     float coreFactor = smoothstep(2.0, 0.0, r);
-    float pSize = mix(0.024, 0.042, coreFactor);
-    gl_PointSize = max(1.5, pSize * (220.0 / -mvPosition.z));
+    float pSize = mix(0.016, 0.030, coreFactor);
+    gl_PointSize = max(1.0, pSize * (200.0 / -mvPosition.z));
   }
 `;
 
@@ -79,11 +79,11 @@ const galaxyMainFragmentShader = `
       col = mix(uColorOuter, uColorAccent, t * 0.65);
     }
 
-    // Incandescence boost for core stars
-    float coreIncandescence = smoothstep(0.22, 0.0, vRadius) * 1.8;
-    vec3 finalLinearColor = (col + vec3(coreIncandescence * 0.7)) * vBrightness;
+    // Incandescence boost for core stars (sober, not blinding)
+    float coreIncandescence = smoothstep(0.22, 0.0, vRadius) * 0.9;
+    vec3 finalLinearColor = (col + vec3(coreIncandescence * 0.4)) * vBrightness;
 
-    gl_FragColor = vec4(finalLinearColor, tex.a * 0.92);
+    gl_FragColor = vec4(finalLinearColor, tex.a * 0.75);
 
     #include <colorspace_fragment>
   }
@@ -140,8 +140,8 @@ const galaxyGlowFragmentShader = `
       ? mix(uColorCore, uColorMid, smoothstep(0.0, 0.35, rMod)) 
       : mix(uColorMid, uColorOuter, smoothstep(0.35, 1.0, rMod));
 
-    // Very low alpha (0.035 - 0.055) creating soft atmospheric nebulosity along arms
-    float alpha = tex.a * 0.048;
+    // Low alpha creating soft atmospheric nebulosity along arms without blowout
+    float alpha = tex.a * 0.026;
     gl_FragColor = vec4(col, alpha);
 
     #include <colorspace_fragment>

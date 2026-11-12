@@ -38,7 +38,7 @@ export function SkillsSection() {
             {t.skills.badge}
           </Badge>
           <h2 className="text-3xl sm:text-5xl font-serif text-[#f1f5f9] tracking-tight">
-            Stack & <span className="italic text-[#ec4899]">Capacidades</span>
+            {t.skills.title}
           </h2>
           <p className="text-xs sm:text-sm text-[#94a3b8] font-mono tracking-wider">
             {t.skills.subtitle}
@@ -81,13 +81,23 @@ export function SkillsSection() {
                 <AncientCard
                   key={skill.name}
                   variant="interactive"
+                  role="button"
+                  tabIndex={0}
                   accent="magenta"
+                  aria-pressed={isSelected}
+                  onKeyDown={(e) => {
+                    if (e.key === 'Enter' || e.key === ' ') {
+                      e.preventDefault();
+                      audioSynth.playSelectTone();
+                      setSelectedSkill(isSelected ? null : skill);
+                    }
+                  }}
                   onClick={() => {
                     audioSynth.playSelectTone();
                     setSelectedSkill(isSelected ? null : skill);
                   }}
                   className={`p-3 space-y-1.5 transition-all duration-200 ${
-                    isSelected ? 'border-[#ec4899] bg-[#ec4899]/10' : ''
+                    isSelected ? 'border-[#ec4899] bg-[#ec4899]/15' : ''
                   }`}
                 >
                   <div className="flex items-center justify-between">

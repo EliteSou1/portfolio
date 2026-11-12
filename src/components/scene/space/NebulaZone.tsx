@@ -46,9 +46,9 @@ const nebulaQuadFragmentShader = `
       discard;
     }
     vec4 tex = texture2D(uMap, vUv);
-    // Subtle breathing: +-5% opacity oscillation
-    float breath = 1.0 + 0.05 * sin(uTime * uBreathSpeed + uBreathPhase);
-    float a = tex.a * uBaseAlpha * breath;
+    // Very subtle static/calm cloud: no distracting pulsation
+    float breath = 1.0 + 0.015 * sin(uTime * 0.2 + uBreathPhase);
+    float a = tex.a * uBaseAlpha * breath * 0.65; // Softened contrast
     if (a < 0.003) discard;
     gl_FragColor = vec4(uColor * tex.rgb, a);
   }

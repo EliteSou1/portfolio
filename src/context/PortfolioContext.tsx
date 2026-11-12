@@ -221,7 +221,7 @@ export function PortfolioProvider({ children }: { children: React.ReactNode }) {
       transitionTimerRef.current = setTimeout(() => {
         setIsTransitioning(false);
         transitionCooldownRef.current = false;
-      }, isReducedMotion ? 0 : 550);
+      }, isReducedMotion ? 0 : 250);
     },
     [activeSection, isReducedMotion]
   );

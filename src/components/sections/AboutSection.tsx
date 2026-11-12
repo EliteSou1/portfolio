@@ -23,7 +23,7 @@ export function AboutSection() {
             {t.about.badge}
           </Badge>
           <h2 className="text-3xl sm:text-5xl font-serif text-[#f1f5f9] tracking-tight">
-            Génesis & <span className="italic text-[#ffcf8a]">Filosofía</span>
+            {t.about.title}
           </h2>
           <p className="text-sm font-mono text-[#ffcf8a] leading-relaxed">
             {t.about.lead}
